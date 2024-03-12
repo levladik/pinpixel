@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/pinpixel/static/css/main.31d6cfe0.css",
+    "main.js": "/pinpixel/static/js/main.0fba51b5.js",
+    "static/js/453.ad1f1acf.chunk.js": "/pinpixel/static/js/453.ad1f1acf.chunk.js",
+    "index.html": "/pinpixel/index.html",
+    "main.0fba51b5.js.map": "/pinpixel/static/js/main.0fba51b5.js.map",
+    "453.ad1f1acf.chunk.js.map": "/pinpixel/static/js/453.ad1f1acf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.31d6cfe0.css",
+    "static/js/main.0fba51b5.js"
+  ]
+}
