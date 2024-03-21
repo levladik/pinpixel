@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl from 'mapbox-gl';
+import mapboxgl, { accessToken } from 'mapbox-gl';
+import { SearchBox } from '@mapbox/search-js-react';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGV2bGFkaWsiLCJhIjoiY2ttbmtreXpsMDJuczJvbGZjbWk5a2N2diJ9.w50051-ckXCDXPYqgy-t1w';
 
@@ -18,20 +19,30 @@ export default function App() {
       center: [lng, lat],
       zoom: zoom
     });
+
+    const nav = new mapboxgl.NavigationControl();
     
     map.current.on('move', () => {
       setLng(map.current.getCenter().lng.toFixed(4));
       setLat(map.current.getCenter().lat.toFixed(4));
       setZoom(map.current.getZoom().toFixed(2));
     });
-  });
+
+    map.current.addControl(nav);
+  }, []);
 
   return (
     <div>
-      <div className="sidebar">
-        Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-      </div>
       <div ref={mapContainer} className="map-container" />
+      <SearchBox 
+        accessToken={mapboxgl.accessToken}
+        map={map.current}
+        value=''
+        placeholder='Enter your city'
+        options={{
+          types: 'place',
+          }}
+      />
     </div>
   );
 }
