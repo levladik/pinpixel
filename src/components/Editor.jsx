@@ -1,15 +1,17 @@
 import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl, { accessToken } from 'mapbox-gl';
-import { SearchBox } from '@mapbox/search-js-react';
+import mapboxgl from 'mapbox-gl';
+import MapData from './MapData';
+import Map from './Map';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibGV2bGFkaWsiLCJhIjoiY2ttbmtreXpsMDJuczJvbGZjbWk5a2N2diJ9.w50051-ckXCDXPYqgy-t1w';
+const accessToken = "pk.eyJ1IjoibGV2bGFkaWsiLCJhIjoiY2ttbmtreXpsMDJuczJvbGZjbWk5a2N2diJ9.w50051-ckXCDXPYqgy-t1w";
+mapboxgl.accessToken = accessToken;
 
 export default function App() {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-70.9);
   const [lat, setLat] = useState(42.35);
-  const [zoom, setZoom] = useState(9);
+  const [zoom, setZoom] = useState(12);
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -32,17 +34,12 @@ export default function App() {
   }, []);
 
   return (
-    <div>
-      <div ref={mapContainer} className="map-container" />
-      <SearchBox 
-        accessToken={mapboxgl.accessToken}
-        map={map.current}
-        value=''
-        placeholder='Enter your city'
-        options={{
-          types: 'place',
-          }}
-      />
+    <div>     
+       <MapData
+        acsessToken={ accessToken }
+        map={ map.current }
+       />
+       <Map mapContainer={ mapContainer } />
     </div>
   );
 }
