@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function Map({ mapContainer }) {
+export default function Map() {
 
   return (
-    <div ref={mapContainer} className="map-container" />
+    <div id="map-container" className='map-container' />
   );
 };
