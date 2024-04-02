@@ -2,25 +2,37 @@ import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import MapData from './MapData';
 import Map from './Map';
+import { Stack } from '@mui/material';
 
 const accessToken = "pk.eyJ1IjoibGV2bGFkaWsiLCJhIjoiY2ttbmtreXpsMDJuczJvbGZjbWk5a2N2diJ9.w50051-ckXCDXPYqgy-t1w";
 mapboxgl.accessToken = accessToken;
 
-export default function App() {
-  const mapContainer = useRef(null);
+const styles = {
+	piter: 'mapbox://styles/levladik/ckwas7w420a0h15s8xanbvf8j',
+	newyork: 'mapbox://styles/levladik/ckwaqs32n6iax15p1xy9twrc4',
+	paris: 'mapbox://styles/levladik/ckn5wwkxc0zfk17oqooi5o2bp',
+	tokyo: 'mapbox://styles/levladik/ckw3oabba2evs14k6chimh5vr',
+	barcelona: 'mapbox://styles/levladik/ckn5xz5420qrw17s6q2agidvw',
+	lisbon: 'mapbox://styles/levladik/ckw3o3cmm2nyz14nyhwj428nf',
+}
+
+export default function Editor() {
   const map = useRef(null);
-  const [lng, setLng] = useState(-70.9);
+  const [lng, setLng] = useState(-71.05);
   const [lat, setLat] = useState(42.35);
   const [zoom, setZoom] = useState(12);
+  const [style, setStyle] = useState(styles.tokyo);
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v12',
+      container: 'map-container',
+      style: style,
       center: [lng, lat],
       zoom: zoom
     });
+
+    map.current.dragRotate.disable();
+    map.current.touchZoomRotate.disableRotation();
 
     const nav = new mapboxgl.NavigationControl();
     
@@ -31,15 +43,27 @@ export default function App() {
     });
 
     map.current.addControl(nav);
-  }, []);
+  }, [style]);
+
+  const handleChangeCenter = (coordinates) => {
+    setLat(coordinates[0]);
+    setLng(coordinates[1]);
+  }
+
+  const handleChangeStyle = (styleName) => {    
+    map.current.remove();
+    setStyle(styles[styleName]);
+  }
 
   return (
-    <div>     
+    <Stack direction='row'>     
        <MapData
-        acsessToken={ accessToken }
+        accessToken={ accessToken }
         map={ map.current }
+        handleChangeStyle = { handleChangeStyle }
+        handleChangeCenter = { handleChangeCenter }
        />
-       <Map mapContainer={ mapContainer } />
-    </div>
+       <Map />
+    </Stack>
   );
 }
