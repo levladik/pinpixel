@@ -22,6 +22,7 @@ export default function Editor() {
   const [lat, setLat] = useState(42.35);
   const [zoom, setZoom] = useState(12);
   const [style, setStyle] = useState(styles.tokyo);
+  const [mapSize, setMapSize] = useState('30*40');
 
   useEffect(() => {
     map.current = new mapboxgl.Map({
@@ -43,7 +44,7 @@ export default function Editor() {
     });
 
     map.current.addControl(nav);
-  }, [style]);
+  }, [style, mapSize]);
 
   const handleChangeCenter = (coordinates) => {
     setLat(coordinates[0]);
@@ -55,6 +56,10 @@ export default function Editor() {
     setStyle(styles[styleName]);
   }
 
+  const handleChangeMapSize = (event, newAlignment) => {
+		setMapSize(newAlignment);
+	};
+
   return (
     <Stack direction='row'>     
        <MapData
@@ -62,8 +67,10 @@ export default function Editor() {
         map={ map.current }
         handleChangeStyle = { handleChangeStyle }
         handleChangeCenter = { handleChangeCenter }
+        mapSize = { mapSize }
+        handleChangeMapSize = { handleChangeMapSize }
        />
-       <Map />
+       <Map mapSize={ mapSize }/>
     </Stack>
   );
 }

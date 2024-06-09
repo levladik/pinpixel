@@ -2,11 +2,6 @@
   box-sizing: border-box;
 }
 
-.map-container {
-  height: 400px;
-  width: 100%;
-}
-
 .styles-container {
   width: 100%;
 	display: flex;
