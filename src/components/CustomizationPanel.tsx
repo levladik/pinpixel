@@ -2,7 +2,7 @@ import { Input, Divider, Switch, Radio } from 'antd';
 
 export const CustomizationPanel = () => {
   return (
-    <div className='customisation-panel__wrapper col-4 p-3 d-grid gap-1'>
+    <div className='customisation-panel__wrapper col-6 col-lg-4 p-3 d-grid gap-1'>
       <Input placeholder='Seacr your city'/>
 
       <Divider orientation="left">Labels</Divider>

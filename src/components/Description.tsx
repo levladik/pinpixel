@@ -3,7 +3,7 @@ import { DownloadOutlined } from "@ant-design/icons";
 
 export const Description = () => {
   return (
-    <div className="col-3 text-center p-3">
+    <div className="description col-6 col-lg-3 text-center p-3">
       <div className="fs-4 mb-3">Total: $44</div>
       <Button
         className="mb-3"
@@ -23,5 +23,5 @@ export const Description = () => {
         editor, choose from a wide variety of themes, colours and sizes.
       </div>
     </div>
-  );
-};
+  )
+}
