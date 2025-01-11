@@ -1,17 +1,17 @@
-import { Input, Divider, Switch, Radio, Button } from 'antd';
-import { DownloadOutlined } from '@ant-design/icons';
+import { Input, Divider, Switch, Radio } from 'antd';
 
 export const CustomizationPanel = () => {
   return (
-    <div className='customisation-panel__wrapper d-flex flex-column gap-3 p-3'>
+    <div className='customisation-panel__wrapper col-4 p-3 d-grid gap-1'>
       <Input placeholder='Seacr your city'/>
 
       <Divider orientation="left">Labels</Divider>
       <Input placeholder='Title'/>
       <Input placeholder='Subtitle'/>
       <Input placeholder='Tagline'/>
-      <div className='align-self-end'>
-        <p className='d-inline me-2'>Labels:</p><Switch defaultChecked /></div>
+      <div className='text-end'>
+        <p className='d-inline me-2'>Labels:</p><Switch defaultChecked />
+      </div>
 
       <Divider orientation="left">Styles</Divider>
 
@@ -26,16 +26,14 @@ export const CustomizationPanel = () => {
 
       <Divider orientation="left">Size</Divider>
 
-      <Radio.Group buttonStyle="solid" size='large' defaultValue="30x40">
-        <Radio.Button value="21x30">21x30</Radio.Button>
-        <Radio.Button value="30x40">30x40</Radio.Button>
-        <Radio.Button value="40x50">40x50</Radio.Button>
-        <Radio.Button value="50x70">50x70</Radio.Button>
-      </Radio.Group>
-
-      <Button block type="primary" size='large' icon={<DownloadOutlined />}>
-        Download
-      </Button>
+      <div className='m-auto'>
+        <Radio.Group buttonStyle="solid" size='large' defaultValue="30x40">
+          <Radio.Button value="21x30">21x30</Radio.Button>
+          <Radio.Button value="30x40">30x40</Radio.Button>
+          <Radio.Button value="40x50">40x50</Radio.Button>
+          <Radio.Button value="50x70">50x70</Radio.Button>
+        </Radio.Group>
+      </div>
     </div>
   )
 }
