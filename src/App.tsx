@@ -1,10 +1,10 @@
+import { CustomizationPanel } from "./components/CustomizationPanel"
+import './assets/scss/main.scss';
 
 function App() {
 
   return (
-    <>
-      <div>HELLO</div>
-    </>
+    <CustomizationPanel />
   )
 }
 
