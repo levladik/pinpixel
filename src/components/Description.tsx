@@ -3,7 +3,7 @@ import { DownloadOutlined } from "@ant-design/icons";
 
 export const Description = () => {
   return (
-    <div className="description col-6 col-lg-3 text-center p-3">
+    <div className="description col-12 col-md-3 order-3 text-center p-3">
       <div className="fs-4 mb-3">Total: $44</div>
       <Button
         className="mb-3"
