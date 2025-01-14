@@ -1,29 +1,12 @@
-import { useEffect, useState } from "react";
 import { useMapStore } from "../store/map-store";
+import { useResponsiveMapSize } from "../hooks/useResponsiveMapSize";
 
 export const Map = () => {
+
   const { mapSize } = useMapStore();
   const [width, height] = mapSize.split('*');
 
-  const screenWidth = window.innerWidth;
-
-  const [mapWidth, setMapWidth] = useState(
-    screenWidth > 768 ? 30 :
-    screenWidth > 576 ? 40 : 80
-  );
-
-  useEffect(() => {
-    const handleResize = () => {
-      setMapWidth(window.innerWidth > 768 ? 30 : window.innerWidth > 576 ? 40 : 80);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
+  const mapWidth = useResponsiveMapSize();
   const mapHeight = mapWidth * (height / width);
 
   return (
