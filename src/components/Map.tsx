@@ -6,7 +6,7 @@ import { mapboxConfig } from "../config/mapboxConfig";
 import { useResponsiveMapSize } from "../hooks/useResponsiveMapSize";
 
 export const Map = () => {
-  const { mapSize, mapCenter, mapZoom, mapStyle } = useMapStore();
+  const { mapSize, mapCenter, setMapCenter, mapZoom, setMapZoom, mapStyle } = useMapStore();
   const [width, height] = mapSize.split("*");
 
   const mapWidth = useResponsiveMapSize();
@@ -17,12 +17,23 @@ export const Map = () => {
 
   useEffect(() => {
     mapboxgl.accessToken = mapboxConfig.accessToken;
+    
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: mapStyle,
       center: mapCenter,
       zoom: mapZoom,
     });
+
+    //Update mapCenter and mapZoom when the map is moved
+    mapRef.current.on('move', () => {
+      const { lng, lat } = mapRef.current.getCenter();
+
+      setMapCenter([ lng, lat ])
+      setMapZoom(mapRef.current.getZoom())      
+    })
+
+    mapRef.current.dragRotate.disable();
 
     return () => {
       mapRef.current.remove();
@@ -31,6 +42,9 @@ export const Map = () => {
 
   return (
     <div className="map__wrapper p-3 col-12 col-md-5 order-1 order-md-2 flex-shrink-0">
+      <div className="sidebar">
+        Longitude: {mapCenter[0].toFixed(4)} | Latitude: {mapCenter[1].toFixed(4)} | Zoom: {mapZoom.toFixed(2)}
+      </div>
       <div
         ref={mapContainerRef}
         id="map-container"
