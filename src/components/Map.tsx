@@ -6,39 +6,41 @@ import { mapboxConfig } from "../config/mapboxConfig";
 import { useResponsiveMapSize } from "../hooks/useResponsiveMapSize";
 
 export const Map = () => {
-  const { mapSize, mapCenter, setMapCenter, mapZoom, setMapZoom, mapStyle } = useMapStore();
+  const { setMapRef, mapSize, mapCenter, setMapCenter, mapZoom, setMapZoom } = useMapStore();
   const [width, height] = mapSize.split("*");
 
   const mapWidth = useResponsiveMapSize();
   const mapHeight = mapWidth * (height / width);
 
-  const mapRef = useRef<mapboxgl.Map | null>(null);
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     mapboxgl.accessToken = mapboxConfig.accessToken;
     
-    mapRef.current = new mapboxgl.Map({
+    const mapInstance = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: mapStyle,
       center: mapCenter,
       zoom: mapZoom,
+      size: mapSize,
     });
 
+    setMapRef(mapInstance);
+
     //Update mapCenter and mapZoom when the map is moved
-    mapRef.current.on('move', () => {
-      const { lng, lat } = mapRef.current.getCenter();
+    mapInstance.on('move', () => {
+      const { lng, lat } = mapInstance.getCenter();
 
       setMapCenter([ lng, lat ])
-      setMapZoom(mapRef.current.getZoom())      
+      setMapZoom(mapInstance.getZoom())      
     })
 
-    mapRef.current.dragRotate.disable();
+    mapInstance.dragRotate.disable();
 
     return () => {
-      mapRef.current.remove();
+      mapInstance.remove();
     };
-  }, []);
+  }, []);  
 
   return (
     <div className="map__wrapper p-3 col-12 col-md-5 order-1 order-md-2 flex-shrink-0">

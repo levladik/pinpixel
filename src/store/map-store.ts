@@ -12,9 +12,11 @@ interface MapState {
 }
 
 export const useMapStore = create<MapState>((set) => ({
+  mapRef: null,
+  setMapRef: (ref) => set({ mapRef: ref }),
   mapSize: "30*40",
-  mapCenter: [0, 0],
-  mapZoom: 1,
+  mapCenter: [13.3844, 52.4971],
+  mapZoom: 10,
   mapStyle: "mapbox://styles/mapbox/streets-v11",
   setMapSize: (size) => set({ mapSize: size }),
   setMapCenter: (center) => set({ mapCenter: center }),
