@@ -1,11 +1,13 @@
 import { Input, Divider, Switch } from "antd";
 import { MapSize } from "./MapSize";
+import { CustomSearchBox } from "./CustomSearchBox";
 
 export const CustomizationPanel = () => {
 
   return (
     <div className="customisation-panel__wrapper col-12 col-md-4 order-2 order-md-1 p-3 d-grid gap-1">
-      <Input placeholder="Seacr your city" />
+      
+      <CustomSearchBox />
 
       <Divider orientation="left">Labels</Divider>
       <Input placeholder="Title" />
