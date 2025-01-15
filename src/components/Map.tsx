@@ -10,19 +10,20 @@ export const Map = () => {
   const [width, height] = mapSize.split("*");
 
   const mapWidth = useResponsiveMapSize();
-  const mapHeight = mapWidth * (height / width);
+  const mapHeight = Number(mapWidth) * (Number(height) / Number(width));
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     mapboxgl.accessToken = mapboxConfig.accessToken;
     
+    if (!mapContainerRef.current) return;
+
     const mapInstance = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: mapStyle,
       center: mapCenter,
       zoom: mapZoom,
-      size: mapSize,
     });
 
     setMapRef(mapInstance);

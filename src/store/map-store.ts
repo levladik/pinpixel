@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import mapboxgl from "mapbox-gl";
 
 interface MapState {
   mapRef: mapboxgl.Map | null;
