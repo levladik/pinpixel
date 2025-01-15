@@ -6,7 +6,7 @@ import { mapboxConfig } from "../config/mapboxConfig";
 import { useResponsiveMapSize } from "../hooks/useResponsiveMapSize";
 
 export const Map = () => {
-  const { setMapRef, mapSize, mapCenter, setMapCenter, mapZoom, setMapZoom } = useMapStore();
+  const { setMapRef, mapStyle, mapSize, mapCenter, setMapCenter, mapZoom, setMapZoom } = useMapStore();
   const [width, height] = mapSize.split("*");
 
   const mapWidth = useResponsiveMapSize();
