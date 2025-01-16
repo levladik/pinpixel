@@ -28,6 +28,10 @@ export const Map = () => {
 
     setMapRef(mapInstance);
 
+    mapInstance.addControl(new mapboxgl.NavigationControl({
+      visualizePitch: false
+  }));
+
     //Update mapCenter and mapZoom when the map is moved
     mapInstance.on('move', () => {
       const { lng, lat } = mapInstance.getCenter();
