@@ -1,6 +1,7 @@
-import { Input, Divider, Switch } from "antd";
+import { Divider } from "antd";
 import { MapSize } from "./MapSize";
 import { CustomSearchBox } from "./CustomSearchBox";
+import { Labels } from "./Labels";
 
 export const CustomizationPanel = () => {
 
@@ -9,14 +10,7 @@ export const CustomizationPanel = () => {
       
       <CustomSearchBox />
 
-      <Divider orientation="left">Labels</Divider>
-      <Input placeholder="Title" />
-      <Input placeholder="Subtitle" />
-      <Input placeholder="Tagline" />
-      <div className="text-end">
-        <p className="d-inline me-2">Labels:</p>
-        <Switch defaultChecked />
-      </div>
+      <Labels />
 
       <Divider orientation="left">Styles</Divider>
 

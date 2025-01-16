@@ -1,10 +1,32 @@
-@import '../abstract/variables.scss';
-@import '../abstract/mixins.scss';
+@import "../abstract/variables.scss";
+@import "../abstract/mixins.scss";
 
+.map__wrapper {
+  position: relative;
 
-.map-container {
-  background: lightblue;
+  .map-container {
+    background: lightblue;
+  }
+  .labels {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 70%;
+    min-width: 40%;
+    min-height: 9%;
+    left: 50%;
+    bottom: 5%;
+    transform: translate(-50%, -30%);
+    z-index: 9;
+    background-color: white;
+    padding: 5px 10px;
+    text-align: center;
+    white-space: nowrap;
 
-  @include media-tablet {
+    .labels__title {
+      text-transform: uppercase;
+      font-weight: 800;
+    }
   }
 }
