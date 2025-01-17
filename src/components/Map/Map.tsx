@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { useMapStore } from "../store/map-store";
-import { mapboxConfig } from "../config/mapboxConfig";
-import { useResponsiveMapSize } from "../hooks/useResponsiveMapSize";
+import { useMapStore } from "../../store/map-store";
+import { mapboxConfig } from "../../config/mapboxConfig";
+import { useResponsiveMapSize } from "../../hooks/useResponsiveMapSize";
 
 export const Map = () => {
   const {

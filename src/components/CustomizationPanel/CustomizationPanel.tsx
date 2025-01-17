@@ -1,5 +1,5 @@
 import { Divider } from "antd";
-import { MapSize } from "./MapSize";
+import { MapSize } from "../Map/MapSize";
 import { CustomSearchBox } from "./CustomSearchBox";
 import { Labels } from "./Labels";
 

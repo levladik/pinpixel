@@ -1,5 +1,5 @@
-import { CustomizationPanel } from "./components/CustomizationPanel"
-import { Map } from "./components/Map";
+import { CustomizationPanel } from "./components/CustomizationPanel/CustomizationPanel";
+import { Map } from "./components/Map/Map";
 import { Description } from "./components/Description";
 import './assets/scss/main.scss';
 

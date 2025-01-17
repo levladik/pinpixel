@@ -1,7 +1,7 @@
 import mapboxgl from "mapbox-gl";
-import { useMapStore } from '../store/map-store';
+import { useMapStore } from '../../store/map-store';
 import { SearchBox } from '@mapbox/search-js-react';
-import { mapboxConfig } from "../config/mapboxConfig";
+import { mapboxConfig } from "../../config/mapboxConfig";
 import { useState } from "react";
 
 export const CustomSearchBox = () => {

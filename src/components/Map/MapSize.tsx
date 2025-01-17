@@ -1,4 +1,4 @@
-import { useMapStore } from "../store/map-store";
+import { useMapStore } from "../../store/map-store";
 import { Radio } from "antd";
 
 export const MapSize = () => {
