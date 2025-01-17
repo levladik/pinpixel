@@ -1,5 +1,5 @@
 import { Divider } from "antd";
-import { MapSize } from "../Map/MapSize";
+import { MapSizeButtons } from "../Map/MapSizeButtons";
 import { CustomSearchBox } from "./CustomSearchBox";
 import { Labels } from "./Labels";
 
@@ -48,7 +48,7 @@ export const CustomizationPanel = () => {
       </div>
 
       <Divider orientation="left">Size</Divider>
-      <MapSize />
+      <MapSizeButtons />
       
     </div>
   );

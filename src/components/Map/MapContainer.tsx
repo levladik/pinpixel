@@ -1,45 +1,26 @@
-import { useMapStore } from "../../store/map-store";
-import { Map } from './Map';
-import { useResponsiveMapSize } from '../../hooks/useResponsiveMapSize';
+import { usePosterStore } from "../../store/map.canvas-store";
+import { Map } from "./Map";
+import { useResponsiveMapSize } from "../../hooks/useResponsiveMapSize";
+import { LabelsBox } from "./LabelsBox";
 
 export const MapContainer = () => {
-  const { mapSize, labelTitle, labelSubtitle, labelTagline } = useMapStore();
+  const { posterSize } = usePosterStore();
 
-  const [width, height] = mapSize.split("*");
-  const mapWidth = useResponsiveMapSize();
-  const mapHeight = Number(mapWidth) * (Number(height) / Number(width));
-  
+  const [posterWidth, posterHeight] = posterSize.split("*");
+  const mapContainerWidth = useResponsiveMapSize();
+  const mapContainerHeight = Number(mapContainerWidth) * (Number(posterHeight) / Number(posterWidth));
 
   return (
     <div
       className="map__wrapper p-3 col-12 col-md-5 order-1 order-md-2 flex-shrink-0"
       style={{
         margin: "0 auto",
-        width: `${mapWidth}vw`,
-        height: `${mapHeight}vw`,
+        width: `${mapContainerWidth}vw`,
+        height: `${mapContainerHeight}vw`,
       }}
     >
       <Map />
-      <div className="labels">
-        <p
-          className="labels__title mb-0"
-          style={{ fontSize: `${mapWidth / 20}vw` }}
-        >
-          {labelTitle}
-        </p>
-        <p
-          className="labels__subtitle mb-0"
-          style={{ fontSize: `${mapWidth / 25}vw` }}
-        >
-          {labelSubtitle}
-        </p>
-        <p
-          className="labels__tagline mb-0"
-          style={{ fontSize: `${mapWidth / 40}vw` }}
-        >
-          {labelTagline}
-        </p>
-      </div>
+      <LabelsBox mapContainerWidth={mapContainerWidth}/>
     </div>
   );
 };

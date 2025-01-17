@@ -1,8 +1,10 @@
-import { useMapStore } from "../../store/map-store";
+import { usePosterStore } from "../../store/map.canvas-store";
 import { Radio } from "antd";
+import { UseMapboxStore } from "../../store/mapbox-store";
 
-export const MapSize = () => {
-  const { mapRef, mapSize, setMapSize } = useMapStore();
+export const MapSizeButtons = () => {
+  const { mapRef } = UseMapboxStore();
+  const { posterSize, setPosterSize } = usePosterStore();
 
   const resizeMapContainer = () => {
     requestAnimationFrame(() => {
@@ -18,8 +20,8 @@ export const MapSize = () => {
         buttonStyle="solid"
         size="large"
         defaultValue="30*40"
-        value={mapSize}
-        onChange={(e) => setMapSize(e.target.value, resizeMapContainer)}
+        value={posterSize}
+        onChange={(e) => setPosterSize(e.target.value, resizeMapContainer)}
       >
         <Radio.Button value="21*30">21x30</Radio.Button>
         <Radio.Button value="30*40">30x40</Radio.Button>

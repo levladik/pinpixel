@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-interface MapState {
+interface PosterState {
   posterSize: string;
   setPosterSize: (size: string, callback?: () => void) => void;  
   labelTitle?: string;
@@ -11,7 +11,7 @@ interface MapState {
   setLabelTagline?: (tagline: string) => void;
 }
 
-export const useMapStore = create<MapState>((set) => ({
+export const usePosterStore = create<PosterState>((set) => ({
   
   posterSize: "30*40",
   setPosterSize: (size, callback) => {

@@ -1,9 +1,8 @@
 import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
+import { UseMapboxStore } from "../../store/mapbox-store";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { useMapStore } from "../../store/map-store";
 import { mapboxConfig } from "../../config/mapboxConfig";
-import { useResponsiveMapSize } from "../../hooks/useResponsiveMapSize";
 
 export const Map = () => {
   const {
@@ -13,7 +12,7 @@ export const Map = () => {
     setMapCenter,
     mapZoom,
     setMapZoom,
-  } = useMapStore();
+  } = UseMapboxStore();
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
 

@@ -1,5 +1,5 @@
 import mapboxgl from "mapbox-gl";
-import { useMapStore } from '../../store/map-store';
+import { UseMapboxStore } from "../../store/mapbox-store";
 import { SearchBox } from '@mapbox/search-js-react';
 import { mapboxConfig } from "../../config/mapboxConfig";
 import { useState } from "react";
@@ -7,7 +7,7 @@ import { useState } from "react";
 export const CustomSearchBox = () => {
 
   const [inputValue, setInputValue] = useState("");
-const { mapRef } = useMapStore();
+const { mapRef } = UseMapboxStore();
 
   return (
     <div>
