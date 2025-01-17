@@ -3,7 +3,7 @@ import { create } from "zustand";
 interface MapState {
   mapRef: mapboxgl.Map | null;
   setMapRef: (ref: mapboxgl.Map | null) => void;
-  mapSize: string; // e.g., "30*40"
+  mapSize: string;
   setMapSize: (size: string, callback?: () => void) => void;
   mapCenter: [number, number];
   setMapCenter: (center: [number, number]) => void;

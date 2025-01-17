@@ -2,6 +2,7 @@ import { CustomizationPanel } from "./components/CustomizationPanel/Customizatio
 import { Map } from "./components/Map/Map";
 import { Description } from "./components/Description";
 import './assets/scss/main.scss';
+import { MapContainer } from "./components/Map/MapContainer";
 
 function App() {
 
@@ -9,7 +10,7 @@ function App() {
    <div className="content__wrapper">
       <div className="row d-flex justify-content-between">
         <CustomizationPanel />
-        <Map />
+        <MapContainer />
         <Description />
       </div>
    </div>
