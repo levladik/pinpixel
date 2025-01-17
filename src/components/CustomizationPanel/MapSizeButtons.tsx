@@ -1,4 +1,4 @@
-import { usePosterStore } from "../../store/map.canvas-store";
+import { usePosterStore } from "../../store/map.poster-store";
 import { Radio } from "antd";
 import { UseMapboxStore } from "../../store/mapbox-store";
 

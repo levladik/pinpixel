@@ -1,4 +1,4 @@
-import { usePosterStore } from "../../store/map.canvas-store";
+import { usePosterStore } from "../../store/map.poster-store";
 import { Map } from "./Map";
 import { useResponsiveMapSize } from "../../hooks/useResponsiveMapSize";
 import { LabelsBox } from "./LabelsBox";
@@ -8,7 +8,8 @@ export const MapContainer = () => {
 
   const [posterWidth, posterHeight] = posterSize.split("*");
   const mapContainerWidth = useResponsiveMapSize();
-  const mapContainerHeight = Number(mapContainerWidth) * (Number(posterHeight) / Number(posterWidth));
+  const mapContainerHeight =
+    Number(mapContainerWidth) * (Number(posterHeight) / Number(posterWidth));
 
   return (
     <div
@@ -20,7 +21,7 @@ export const MapContainer = () => {
       }}
     >
       <Map />
-      <LabelsBox mapContainerWidth={mapContainerWidth}/>
+      <LabelsBox mapContainerWidth={mapContainerWidth} />
     </div>
   );
 };

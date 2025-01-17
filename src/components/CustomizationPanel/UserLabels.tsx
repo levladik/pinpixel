@@ -1,7 +1,7 @@
 import { Divider, Input, Switch } from "antd";
-import { usePosterStore } from "../../store/map.canvas-store";
+import { usePosterStore } from "../../store/map.poster-store";
 
-export const Labels = () => {
+export const UserLabels = () => {
   const {
     labelTitle,
     setLabelTitle,
@@ -9,6 +9,8 @@ export const Labels = () => {
     setLabelSubtitle,
     labelTagline,
     setLabelTagline,
+    isLabels,
+    setIsLabels,
   } = usePosterStore();
 
   return (
@@ -34,7 +36,9 @@ export const Labels = () => {
       />
       <div className="text-end">
         <p className="d-inline me-2">Labels:</p>
-        <Switch defaultChecked />
+        <Switch 
+          checked={isLabels}
+          onChange={(checked) => setIsLabels(checked)} />
       </div>
     </>
   );

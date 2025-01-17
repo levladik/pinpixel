@@ -9,6 +9,8 @@ interface PosterState {
   setLabelSubtitle?: (subtitle: string) => void;
   labelTagline?: string;
   setLabelTagline?: (tagline: string) => void;
+  isLabels: boolean;
+  setIsLabels: (checked: boolean) => void;
 }
 
 export const usePosterStore = create<PosterState>((set) => ({
@@ -23,5 +25,7 @@ export const usePosterStore = create<PosterState>((set) => ({
   labelSubtitle: '',
   setLabelSubtitle: (subtitle) => set({labelSubtitle: subtitle}),
   labelTagline: '',
-  setLabelTagline: (tagline) => set({labelTagline: tagline})
+  setLabelTagline: (tagline) => set({labelTagline: tagline}),
+  isLabels: true,
+  setIsLabels: (checked) => set({isLabels: checked}),
 }));
