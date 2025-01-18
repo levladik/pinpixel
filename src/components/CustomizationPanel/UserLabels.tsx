@@ -3,15 +3,15 @@ import { usePosterStore } from "../../store/map.poster-store";
 
 export const UserLabels = () => {
   const {
-    labelTitle,
-    setLabelTitle,
-    labelSubtitle,
-    setLabelSubtitle,
-    labelTagline,
-    setLabelTagline,
     isLabels,
     setIsLabels,
-  } = usePosterStore();
+    city,
+    setCity,
+    country,
+    setCountry,
+    coordinates,
+    setCoordinates
+  } = usePosterStore();  
 
   return (
     <>
@@ -19,20 +19,20 @@ export const UserLabels = () => {
       <Input
         maxLength={16}
         placeholder="Title"
-        value={labelTitle}
-        onChange={(e) => setLabelTitle?.(e.target.value)}
+        value={city}
+        onChange={(e) => setCity?.(e.target.value)}
       />
       <Input
         maxLength={26}
         placeholder="Subtitle"
-        value={labelSubtitle}
-        onChange={(e) => setLabelSubtitle?.(e.target.value)}
+        value={country}
+        onChange={(e) => setCountry?.(e.target.value)}
       />
       <Input
         maxLength={42}
         placeholder="Tagline"
-        value={labelTagline}
-        onChange={(e) => setLabelTagline?.(e.target.value)}
+        value={coordinates}
+        onChange={(e) => setCoordinates?.(e.target.value)}
       />
       <div className="text-end">
         <p className="d-inline me-2">Labels:</p>

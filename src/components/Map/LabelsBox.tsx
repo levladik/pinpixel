@@ -5,7 +5,7 @@ interface LabelsBoxProps {
 }
 
 export const LabelsBox: React.FC<LabelsBoxProps> = ({ mapContainerWidth }) => {
-  const { labelTitle, labelSubtitle, labelTagline, isLabels } = usePosterStore();
+  const { isLabels, city, country, coordinates } = usePosterStore();
   return (
     <>
       {isLabels && (
@@ -14,19 +14,19 @@ export const LabelsBox: React.FC<LabelsBoxProps> = ({ mapContainerWidth }) => {
             className="labels__title mb-0"
             style={{ fontSize: `${mapContainerWidth / 20}vw` }}
           >
-            {labelTitle}
+            {city}
           </p>
           <p
             className="labels__subtitle mb-0"
             style={{ fontSize: `${mapContainerWidth / 25}vw` }}
           >
-            {labelSubtitle}
+            {country}
           </p>
           <p
             className="labels__tagline mb-0"
             style={{ fontSize: `${mapContainerWidth / 40}vw` }}
           >
-            {labelTagline}
+            {coordinates}
           </p>
         </div>
       )}

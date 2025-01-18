@@ -3,14 +3,14 @@ import { create } from "zustand";
 interface PosterState {
   posterSize: string;
   setPosterSize: (size: string, callback?: () => void) => void;  
-  labelTitle?: string;
-  setLabelTitle?: (title: string) => void;
-  labelSubtitle?: string;
-  setLabelSubtitle?: (subtitle: string) => void;
-  labelTagline?: string;
-  setLabelTagline?: (tagline: string) => void;
   isLabels: boolean;
   setIsLabels: (checked: boolean) => void;
+  city: string;
+  setCity: (city: string) => void;
+  country: string;
+  setCountry: (country: string) => void;
+  coordinates: number[];
+  setCoordinates: (coordinates: number[]) => void;
 }
 
 export const usePosterStore = create<PosterState>((set) => ({
@@ -20,12 +20,12 @@ export const usePosterStore = create<PosterState>((set) => ({
     set({ posterSize: size })
     if (callback) callback();
   },  
-  labelTitle: '',
-  setLabelTitle: (title) => set({labelTitle: title}),
-  labelSubtitle: '',
-  setLabelSubtitle: (subtitle) => set({labelSubtitle: subtitle}),
-  labelTagline: '',
-  setLabelTagline: (tagline) => set({labelTagline: tagline}),
   isLabels: true,
   setIsLabels: (checked) => set({isLabels: checked}),
+  city: 'Berlin',
+  setCity: (input) => set({city: input}),
+  country: 'Germany',
+  setCountry: (input) => set({country: input}), 
+  coordinates: [13.38886, 52.517037],
+  setCoordinates: (input) => set({coordinates: input}),
 }));
