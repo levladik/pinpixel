@@ -49,7 +49,7 @@ export const Map = () => {
     return () => {
       mapInstance.remove();
     };
-  }, []);
+  }, [mapStyle]);
 
   return (
       <div
