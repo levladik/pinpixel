@@ -18,6 +18,6 @@ export const UseMapboxStore = create<MapboxState>((set) => ({
   setMapCenter: (center) => set({ mapCenter: center }),
   mapZoom: 10,
   setMapZoom: (zoom) => set({ mapZoom: zoom }),
-  mapStyle: "mapbox://styles/mapbox/streets-v10",
+  mapStyle: "mapbox://styles/levladik/ckwas7w420a0h15s8xanbvf8j",
   setMapStyle: (style) => set({ mapStyle: style }),
 }))
