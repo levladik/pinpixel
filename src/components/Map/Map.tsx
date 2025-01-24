@@ -5,14 +5,8 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { mapboxConfig } from "../../config/mapboxConfig";
 
 export const Map = () => {
-  const {
-    setMapRef,
-    mapStyle,
-    mapCenter,
-    setMapCenter,
-    mapZoom,
-    setMapZoom,
-  } = UseMapboxStore();
+  const { setMapRef, mapStyle, mapCenter, setMapCenter, mapZoom, setMapZoom } =
+    UseMapboxStore();
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -36,7 +30,6 @@ export const Map = () => {
       })
     );
 
-    //Update mapCenter and mapZoom when the map is moved
     mapInstance.on("move", () => {
       const { lng, lat } = mapInstance.getCenter();
 
@@ -45,6 +38,9 @@ export const Map = () => {
     });
 
     mapInstance.dragRotate.disable();
+    mapContainerRef.current?.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+    });
 
     return () => {
       mapInstance.remove();
@@ -52,15 +48,15 @@ export const Map = () => {
   }, [mapStyle]);
 
   return (
-      <div
-        ref={mapContainerRef}
-        id="map-container"
-        className="map-container"
-        style={{
-          margin: "0 auto",
-          width: `100%`,
-          height: `100%`,
-        }}
-      />
+    <div
+      ref={mapContainerRef}
+      id="map-container"
+      className="map-container"
+      style={{
+        margin: "0 auto",
+        width: `100%`,
+        height: `100%`,
+      }}
+    />
   );
 };
