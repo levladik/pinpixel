@@ -31,7 +31,7 @@ export const UserLabels = () => {
       <Input
         maxLength={42}
         placeholder="Tagline"
-        value={coordinates}
+        value={`${coordinates[0]} ${coordinates[1]}`}
         onChange={(e) => setCoordinates?.(e.target.value)}
       />
       <div className="text-end">
