@@ -11,10 +11,11 @@ import { mapStyles } from '../../config/mapboxConfig.ts';
 
 export const MapStyles = () => {
 
-  const { setMapStyle } = UseMapboxStore();
+  const { setMapStyle, mapRef } = UseMapboxStore();
 
   const changeMapStyle = (style: string) => {
-    setMapStyle(style)
+    setMapStyle(style);
+    mapRef?.setStyle(style);
   }
 
   return (
