@@ -1,0 +1,17 @@
+@import '../abstract/variables.scss';
+@import '../abstract/mixins.scss';
+
+.content__wrapper {
+  max-width: 1460px;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 10px 40px;
+
+  @include media-laptop {
+    padding: 0 20px;
+  }
+
+  @include media-tablet {
+    padding: 0 10px;
+  }
+}
