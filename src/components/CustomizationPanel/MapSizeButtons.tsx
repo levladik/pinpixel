@@ -19,16 +19,21 @@ export const MapSizeButtons = () => {
       <Divider orientation="left">Size</Divider>
       <div className="m-auto">
         <Radio.Group
+          className="text-nowrap"
           buttonStyle="solid"
           size="large"
           defaultValue="30*40"
           value={posterSize}
           onChange={(e) => setPosterSize(e.target.value, resizeMapContainer)}
         >
-          <Radio.Button value="21*30">21x30</Radio.Button>
-          <Radio.Button value="30*40">30x40</Radio.Button>
-          <Radio.Button value="40*50">40x50</Radio.Button>
-          <Radio.Button value="50*70">50x70</Radio.Button>
+          <div className="mb-2">
+            <Radio.Button value="21*30">21x30</Radio.Button>
+            <Radio.Button value="30*40">30x40</Radio.Button>
+          </div>
+          <div>
+            <Radio.Button value="40*50">40x50</Radio.Button>
+            <Radio.Button value="50*70">50x70</Radio.Button>
+          </div>
         </Radio.Group>
       </div>
     </>

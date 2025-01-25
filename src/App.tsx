@@ -8,10 +8,10 @@ function App() {
 
   return (
    <div className="content__wrapper">
-      <div className="row d-flex justify-content-between">
+      <div className="row d-flex justify-content-center gx-5">
         <CustomizationPanel />
         <MapContainer />
-        <Description />
+        {/* <Description /> */}
       </div>
    </div>
   )

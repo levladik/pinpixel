@@ -52,11 +52,6 @@ export const Map = () => {
       ref={mapContainerRef}
       id="map-container"
       className="map-container"
-      style={{
-        margin: "0 auto",
-        width: `100%`,
-        height: `100%`,
-      }}
     />
   );
 };

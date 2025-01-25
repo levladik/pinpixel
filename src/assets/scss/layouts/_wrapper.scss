@@ -4,8 +4,8 @@
 .content__wrapper {
   max-width: 1460px;
   height: 100vh;
-  margin: auto;
-  padding: 0 40px;
+  margin: 0 auto;
+  padding: 10px 40px;
 
   @include media-laptop {
     padding: 0 20px;
