@@ -1,50 +1,43 @@
-# React + TypeScript + Vite
+# **PinPixel**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Link: <a href="https://levladik.github.io/pinpixel/" target="_blank">PinPixel</a>
 
-Currently, two official plugins are available:
+**PinPixel** is a web application for creating customized maps using Mapbox. Users can choose a map style, add labels, adjust the size, and download the final map as an image.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 **Features**
 
-## Expanding the ESLint configuration
+- Map style selection.
+- Map customization:
+  - Add custom labels.
+  - Choose map size.
+- Location search with an integrated search box.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🛠️ **Tech Stack**
 
-- Configure the top-level `parserOptions` property like this:
+- **Frontend**: React, TypeScript
+- **Maps**: Mapbox API
+- **Build Tool**: Vite
+- **Styling**: Ant Design, CSS
+- **State Management**: Zustand
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+
+## 📦 **Installation and Setup**
+
+1. Ensure you have Node.js and npm installed on your machine.
+2. Clone the repository:
+
+```bash 
+git clone https://github.com/levladik/pinpixel.git
 ```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+3. Navigate to the project directory:
+```bash
+cd pinpixel
+```
+4. Install dependencies:
+```bash
+npm install
+```
+5. Run the application:
+```bash
+npm run dev
 ```
