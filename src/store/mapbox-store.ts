@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 interface MapboxState {
-  mapRef: mapboxgl.Map | null;
+  mapRef: mapboxgl.Map | undefined | null;
   setMapRef: (ref: mapboxgl.Map | null) => void;
   mapCenter: [number, number];
   setMapCenter: (center: [number, number]) => void;
@@ -12,7 +12,7 @@ interface MapboxState {
 }
 
 export const UseMapboxStore = create<MapboxState>((set) => ({
-  mapRef: null,
+  mapRef: undefined,
   setMapRef: (ref) => set({ mapRef: ref }),
   mapCenter: [13.3844, 52.4971],
   setMapCenter: (center) => set({ mapCenter: center }),
