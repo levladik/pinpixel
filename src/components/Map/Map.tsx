@@ -30,15 +30,26 @@ export const Map = () => {
       })
     );
 
+    mapInstance.on("style.load", () => {
+      const style = mapInstance.getStyle();
+      const layers = style ? style.layers : null;
+      if (layers) {
+        layers.forEach((layer) => {
+          if (layer.id.includes("label") || layer.id.includes("icon")) {
+            mapInstance.setLayoutProperty(layer.id, "visibility", "none");
+          }
+        });
+      }
+    });
+
     mapInstance.on("move", () => {
       const { lng, lat } = mapInstance.getCenter();
-
       setMapCenter([lng, lat]);
       setMapZoom(mapInstance.getZoom());
     });
 
     mapInstance.dragRotate.disable();
-    mapContainerRef.current?.addEventListener('contextmenu', (e) => {
+    mapContainerRef.current?.addEventListener("contextmenu", (e) => {
       e.preventDefault();
     });
 
@@ -47,11 +58,5 @@ export const Map = () => {
     };
   }, []);
 
-  return (
-    <div
-      ref={mapContainerRef}
-      id="map-container"
-      className="map-container"
-    />
-  );
+  return <div ref={mapContainerRef} id="map-container" className="map-container" />;
 };

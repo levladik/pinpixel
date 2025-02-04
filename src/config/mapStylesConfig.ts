@@ -4,6 +4,10 @@ import paris from "../assets/map-styles-icons/paris.jpg";
 import tokyo from "../assets/map-styles-icons/tokyo.jpg";
 import barcelona from "../assets/map-styles-icons/barcelona.jpg";
 import lisbon from "../assets/map-styles-icons/lisbon.jpg";
+import streets from "../assets/map-styles-icons/streets-v12.jpg";
+import outdoors from "../assets/map-styles-icons/outdoors-v11.jpg";
+import light from "../assets/map-styles-icons/light.jpg";
+import dark from "../assets/map-styles-icons/dark.jpg";
 
 export const mapStylesConfig = [
   {
@@ -36,4 +40,24 @@ export const mapStylesConfig = [
     style: "mapbox://styles/levladik/ckw3o3cmm2nyz14nyhwj428nf",
     image: lisbon,
   },
+  {
+    name: "streets",
+    style: "mapbox://styles/mapbox/streets-v12",
+    image: streets,
+  },
+  {
+    name: "outdoors",
+    style: "mapbox://styles/mapbox/outdoors-v11",
+    image: outdoors,
+  },
+  {
+    name: "light",
+    style: "mapbox://styles/mapbox/light-v10",
+    image: light,
+  },
+  {
+    name: "dark",
+    style: "mapbox://styles/mapbox/dark-v11",
+    image: dark,
+  }
 ];
