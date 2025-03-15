@@ -5,8 +5,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { mapboxConfig } from "../../config/mapboxConfig";
 
 export const Map = () => {
-  const { setMapRef, mapStyle, mapCenter, setMapCenter, mapZoom, setMapZoom } =
-    UseMapboxStore();
+  const { setMapRef, mapStyle, mapCenter, setMapCenter, mapZoom, setMapZoom } = UseMapboxStore();
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -15,16 +14,17 @@ export const Map = () => {
 
     if (!mapContainerRef.current) return;
 
-    // Load saved center & zoom from localStorage (if available)
     const savedCenter = localStorage.getItem("mapCenter");
     const savedZoom = localStorage.getItem("mapZoom");
+    const savedStyle = localStorage.getItem('mapStyle')
 
     const initialCenter = savedCenter ? JSON.parse(savedCenter) : mapCenter;
     const initialZoom = savedZoom ? parseFloat(savedZoom) : mapZoom;
+    const initialStyle = savedStyle || mapStyle
 
     const mapInstance = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: mapStyle,
+      style: initialStyle,
       center: initialCenter,
       zoom: initialZoom,
     });

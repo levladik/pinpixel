@@ -9,6 +9,7 @@ export const MapStyles = () => {
   const changeMapStyle = (style: string) => {
     setMapStyle(style);
     mapRef?.setStyle(style);
+    localStorage.setItem('mapStyle', style)
   };
 
   return (
