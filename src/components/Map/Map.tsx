@@ -15,11 +15,18 @@ export const Map = () => {
 
     if (!mapContainerRef.current) return;
 
+    // Load saved center & zoom from localStorage (if available)
+    const savedCenter = localStorage.getItem("mapCenter");
+    const savedZoom = localStorage.getItem("mapZoom");
+
+    const initialCenter = savedCenter ? JSON.parse(savedCenter) : mapCenter;
+    const initialZoom = savedZoom ? parseFloat(savedZoom) : mapZoom;
+
     const mapInstance = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: mapStyle,
-      center: mapCenter,
-      zoom: mapZoom,
+      center: initialCenter,
+      zoom: initialZoom,
     });
 
     setMapRef(mapInstance);
@@ -44,8 +51,13 @@ export const Map = () => {
 
     mapInstance.on("move", () => {
       const { lng, lat } = mapInstance.getCenter();
+      const zoom = mapInstance.getZoom();
+
+      localStorage.setItem("mapCenter", JSON.stringify([lng, lat]));
+      localStorage.setItem("mapZoom", zoom.toString());
+
       setMapCenter([lng, lat]);
-      setMapZoom(mapInstance.getZoom());
+      setMapZoom(zoom);
     });
 
     mapInstance.dragRotate.disable();
