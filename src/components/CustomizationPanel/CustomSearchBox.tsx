@@ -13,10 +13,19 @@ export const CustomSearchBox = () => {
   const { setCity, setCountry, setCoordinates } = usePosterStore();
 
   const handleRetrieve = (result: SearchBoxRetrieveResponse ) => {
-    setCity(result.features[0].properties.name);
-    setCountry(result.features[0].properties.context?.country?.name || "");
-    setCoordinates(result.features[0].geometry.coordinates);
-  };
+    const place = result.features[0]
+    const cityName = place.properties.name
+    const countryName = place.properties.context?.country?.name || ""
+    const coords = place.geometry.coordinates
+
+    setCity(cityName)
+    setCountry(countryName)
+    setCoordinates(coords)
+
+    localStorage.setItem("city", cityName)
+    localStorage.setItem("country", countryName)
+    localStorage.setItem("coordinates", JSON.stringify(coords))
+  }
 
   return (
       // @ts-expect-error: mapRef might be null
@@ -27,11 +36,9 @@ export const CustomSearchBox = () => {
         options={{
           types: 'place',
         }}
-        placeholder="Seacr your city"
+        placeholder="Search your city"
         value={inputValue}
-        onChange={(input) => {
-          setInputValue(input);
-        }}
+        onChange={(input) => setInputValue(input)}
         onRetrieve={handleRetrieve}
       />
   );
