@@ -1,18 +1,36 @@
 import { usePosterStore } from "../../store/map.poster-store";
-import { Divider, Radio } from "antd";
+import { Divider, Radio, RadioChangeEvent } from "antd";
 import { UseMapboxStore } from "../../store/mapbox-store";
+import { useEffect } from "react";
 
 export const MapSizeButtons = () => {
-  const { mapRef } = UseMapboxStore();
-  const { posterSize, setPosterSize } = usePosterStore();
+  const { mapRef } = UseMapboxStore()
+  const { posterSize, setPosterSize } = usePosterStore()
+
+  useEffect(() => {
+    const savedPosterSize = localStorage.getItem("posterSize")
+    if (savedPosterSize) {
+      setPosterSize(savedPosterSize, () => {
+        resizeMapContainer()
+      })
+    }
+  }, [])
 
   const resizeMapContainer = () => {
     requestAnimationFrame(() => {
       if (mapRef) {
-        mapRef.resize();
+        mapRef.resize()
       }
     });
   };
+
+  const handleSizeChange = (e: RadioChangeEvent) => {
+    const newSize = e.target.value
+    setPosterSize(newSize, () => {
+      localStorage.setItem("posterSize", newSize)
+      resizeMapContainer()
+    })
+  }
 
   return (
     <>
@@ -24,7 +42,7 @@ export const MapSizeButtons = () => {
           size="large"
           defaultValue="30*40"
           value={posterSize}
-          onChange={(e) => setPosterSize(e.target.value, resizeMapContainer)}
+          onChange={handleSizeChange}
         >
           <div className="mb-2">
             <Radio.Button value="21*30">21x30</Radio.Button>
