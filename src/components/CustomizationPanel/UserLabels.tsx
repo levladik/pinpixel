@@ -12,37 +12,44 @@ export const UserLabels = () => {
     setCountry,
     coordinates,
     setCoordinates,
-  } = usePosterStore();
+  } = usePosterStore()
 
   useEffect(() => {
-    const savedCity = localStorage.getItem("city");
-    const savedCountry = localStorage.getItem("country");
-    const savedCoordinates = localStorage.getItem("coordinates");
+    const savedCity = localStorage.getItem("city")
+    const savedCountry = localStorage.getItem("country")
+    const savedCoordinates = localStorage.getItem("coordinates")
+    const savedIsLabels = localStorage.getItem("isLabels")
 
-    if (savedCity) setCity(savedCity);
-    if (savedCountry) setCountry(savedCountry);
+    if (savedCity) setCity(savedCity)
+    if (savedCountry) setCountry(savedCountry)
     if (savedCoordinates) setCoordinates(JSON.parse(savedCoordinates))
-  }, []);
+    if (savedIsLabels) setIsLabels(savedIsLabels === "true")
+  }, [])
 
   const handleCityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setCity(value);
     localStorage.setItem("city", value);
-  };
+  }
 
   const handleCountryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setCountry(value);
-    localStorage.setItem("country", value);
-  };
+    const value = e.target.value
+    setCountry(value)
+    localStorage.setItem("country", value)
+  }
 
   const handleCoordinatesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.split(" ").map(Number) as [number, number];
+    const value = e.target.value.split(" ").map(Number) as [number, number]
     if (!isNaN(value[0]) && !isNaN(value[1])) {
-      setCoordinates(value);
-      localStorage.setItem("coordinates", JSON.stringify(value));
+      setCoordinates(value)
+      localStorage.setItem("coordinates", JSON.stringify(value))
     }
-  };
+  }
+
+  const handleIsLabelsChange = (checked: boolean) => {
+    setIsLabels(checked);
+    localStorage.setItem("isLabels", String(checked));
+  }
 
   return (
     <>
@@ -67,7 +74,7 @@ export const UserLabels = () => {
       />
       <div className="text-end">
         <p className="d-inline me-2">Labels:</p>
-        <Switch checked={isLabels} onChange={setIsLabels} />
+        <Switch checked={isLabels} onChange={handleIsLabelsChange} />
       </div>
     </>
   );
