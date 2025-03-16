@@ -41,3 +41,34 @@ npm install
 ```bash
 npm run dev
 ```
+
+## Project Architecture  
+
+### Main Components  
+1. **`App`** - The root component of the application  
+2. **`CustomizationPanel`** - Panel for customizing the map appearance:  
+   - `CustomSearchBox` - Location search  
+   - `UserLabels` - Custom label settings  
+   - `MapStyles` - Map style selection  
+   - `MapSizeButtons` - Map size control  
+
+3. **`Map`** - Map display block:  
+   - `MapContainer` - Container for Mapbox GL  
+   - `Map` - MapBox initialisation
+   - `LabelsBox` - Displays text labels on the map  
+
+### State Management  
+- **`map.poster-store` (Zustand)**:  
+  - Stores poster settings: size, labels, location  
+  - Handles synchronization with `localStorage`  
+
+- **`mapbox-store` (Zustand)**:  
+  - Manages map state (`mapRef`)  
+  - Contains methods for interacting with the Mapbox API  
+
+### Configuration  
+- **`mapboxConfig`** - Access settings for Mapbox  
+- **`mapStylesConfig`** - Configuration of available map styles  
+
+### Utility Modules  
+- **`useResponsiveMapSize`** - Hook for adapting map sizes  
