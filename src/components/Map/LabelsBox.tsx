@@ -26,7 +26,7 @@ export const LabelsBox: React.FC<LabelsBoxProps> = ({ mapContainerWidth }) => {
             className="labels__tagline mb-0"
             style={{ fontSize: `${mapContainerWidth / 40}vw` }}
           >
-            {`${coordinates[0]}  ${coordinates[1]}`}
+            {coordinates}
           </p>
         </div>
       )}

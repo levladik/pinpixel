@@ -1,12 +1,12 @@
-import { useEffect, useRef } from "react";
-import mapboxgl from "mapbox-gl";
-import { UseMapboxStore } from "../../store/mapbox-store";
-import "mapbox-gl/dist/mapbox-gl.css";
-import { mapboxConfig } from "../../config/mapboxConfig";
+import { useEffect, useRef } from 'react';
+import mapboxgl from 'mapbox-gl';
+import { useMapboxStore } from '../../store/mapbox-store';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import { mapboxConfig } from '../../config/mapboxConfig';
 
 export const Map = () => {
   const { setMapRef, mapStyle, mapCenter, setMapCenter, mapZoom, setMapZoom } =
-    UseMapboxStore();
+    useMapboxStore();
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -15,11 +15,19 @@ export const Map = () => {
 
     if (!mapContainerRef.current) return;
 
+    const savedCenter = localStorage.getItem('mapCenter');
+    const savedZoom = localStorage.getItem('mapZoom');
+    const savedStyle = localStorage.getItem('mapStyle');
+
+    const initialCenter = savedCenter ? JSON.parse(savedCenter) : mapCenter;
+    const initialZoom = savedZoom ? parseFloat(savedZoom) : mapZoom;
+    const initialStyle = savedStyle || mapStyle;
+
     const mapInstance = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: mapStyle,
-      center: mapCenter,
-      zoom: mapZoom,
+      style: initialStyle,
+      center: initialCenter,
+      zoom: initialZoom,
     });
 
     setMapRef(mapInstance);
@@ -30,26 +38,31 @@ export const Map = () => {
       })
     );
 
-    mapInstance.on("style.load", () => {
+    mapInstance.on('style.load', () => {
       const style = mapInstance.getStyle();
       const layers = style ? style.layers : null;
       if (layers) {
         layers.forEach((layer) => {
-          if (layer.id.includes("label") || layer.id.includes("icon")) {
-            mapInstance.setLayoutProperty(layer.id, "visibility", "none");
+          if (layer.id.includes('label') || layer.id.includes('icon')) {
+            mapInstance.setLayoutProperty(layer.id, 'visibility', 'none');
           }
         });
       }
     });
 
-    mapInstance.on("move", () => {
+    mapInstance.on('move', () => {
       const { lng, lat } = mapInstance.getCenter();
+      const zoom = mapInstance.getZoom();
+
+      localStorage.setItem('mapCenter', JSON.stringify([lng, lat]));
+      localStorage.setItem('mapZoom', zoom.toString());
+
       setMapCenter([lng, lat]);
-      setMapZoom(mapInstance.getZoom());
+      setMapZoom(zoom);
     });
 
     mapInstance.dragRotate.disable();
-    mapContainerRef.current?.addEventListener("contextmenu", (e) => {
+    mapContainerRef.current?.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     });
 
@@ -58,5 +71,11 @@ export const Map = () => {
     };
   }, []);
 
-  return <div ref={mapContainerRef} id="map-container" className="map-container" />;
+  return (
+    <div
+      ref={mapContainerRef}
+      id='map-container'
+      className='map-container'
+    />
+  );
 };

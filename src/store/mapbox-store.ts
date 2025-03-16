@@ -11,7 +11,7 @@ interface MapboxState {
   setMapStyle: (style: string) => void;
 }
 
-export const UseMapboxStore = create<MapboxState>((set) => ({
+export const useMapboxStore = create<MapboxState>((set) => ({
   mapRef: undefined,
   setMapRef: (ref) => set({ mapRef: ref }),
   mapCenter: [13.3844, 52.4971],

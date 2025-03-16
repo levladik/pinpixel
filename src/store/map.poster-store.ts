@@ -9,8 +9,8 @@ interface PosterState {
   setCity: (city: string) => void;
   country: string;
   setCountry: (country: string) => void;
-  coordinates: number[] | string;
-  setCoordinates: (coordinates: number[] | string) => void;
+  coordinates: string;
+  setCoordinates: (coordinates: string) => void;
 }
 
 export const usePosterStore = create<PosterState>((set) => ({
@@ -26,6 +26,6 @@ export const usePosterStore = create<PosterState>((set) => ({
   setCity: (input) => set({city: input}),
   country: 'Germany',
   setCountry: (input) => set({country: input}), 
-  coordinates: [13.38886, 52.517037],
+  coordinates: '13.38886, 52.517037',
   setCoordinates: (input) => set({coordinates: input}),
 }));
