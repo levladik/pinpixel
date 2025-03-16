@@ -22,7 +22,7 @@ export const UserLabels = () => {
 
     if (savedCity) setCity(savedCity)
     if (savedCountry) setCountry(savedCountry)
-    if (savedCoordinates) setCoordinates(JSON.parse(savedCoordinates))
+    if (savedCoordinates) setCoordinates(savedCoordinates)
     if (savedIsLabels) setIsLabels(savedIsLabels === "true")
   }, [])
 
@@ -39,11 +39,9 @@ export const UserLabels = () => {
   }
 
   const handleCoordinatesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.split(" ").map(Number) as [number, number]
-    if (!isNaN(value[0]) && !isNaN(value[1])) {
-      setCoordinates(value)
-      localStorage.setItem("coordinates", JSON.stringify(value))
-    }
+    const value = e.target.value
+    setCoordinates(value)
+    localStorage.setItem("coordinates", value)
   }
 
   const handleIsLabelsChange = (checked: boolean) => {
@@ -55,7 +53,7 @@ export const UserLabels = () => {
     <>
       <Divider orientation="left">Labels</Divider>
       <Input
-        maxLength={16}
+        maxLength={26}
         placeholder="Title"
         value={city}
         onChange={handleCityChange}
@@ -69,7 +67,7 @@ export const UserLabels = () => {
       <Input
         maxLength={42}
         placeholder="Tagline"
-        value={`${coordinates[0]} ${coordinates[1]}`}
+        value={coordinates}
         onChange={handleCoordinatesChange}
       />
       <div className="text-end">
