@@ -10,9 +10,8 @@ export const MapSizeButtons = () => {
   useEffect(() => {
     const savedPosterSize = localStorage.getItem("posterSize")
     if (savedPosterSize) {
-      setPosterSize(savedPosterSize, () => {
-        resizeMapContainer()
-      })
+      setPosterSize(savedPosterSize)
+      resizeMapContainer()
     }
   }, [])
 
@@ -26,10 +25,9 @@ export const MapSizeButtons = () => {
 
   const handleSizeChange = (e: RadioChangeEvent) => {
     const newSize = e.target.value
-    setPosterSize(newSize, () => {
-      localStorage.setItem("posterSize", newSize)
-      resizeMapContainer()
-    })
+    setPosterSize(newSize) 
+    localStorage.setItem("posterSize", newSize)
+    resizeMapContainer()    
   }
 
   return (
