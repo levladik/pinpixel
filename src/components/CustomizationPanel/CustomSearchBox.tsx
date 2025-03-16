@@ -15,15 +15,15 @@ export const CustomSearchBox = () => {
     const place = result.features[0];
     const cityName = place.properties.name;
     const countryName = place.properties.context?.country?.name || '';
-    const coords = place.geometry.coordinates;
+    const coordinates = place.geometry.coordinates.toString();
 
     setCity(cityName);
     setCountry(countryName);
-    setCoordinates(coords);
+    setCoordinates(coordinates);
 
     localStorage.setItem('city', cityName);
     localStorage.setItem('country', countryName);
-    localStorage.setItem('coordinates', JSON.stringify(coords));
+    localStorage.setItem('coordinates', coordinates);
   };
 
   return (

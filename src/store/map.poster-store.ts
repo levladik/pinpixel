@@ -10,7 +10,7 @@ interface PosterState {
   country: string;
   setCountry: (country: string) => void;
   coordinates: string;
-  setCoordinates: (coordinates: number[] | string) => void;
+  setCoordinates: (coordinates: string) => void;
 }
 
 export const usePosterStore = create<PosterState>((set) => ({
